@@ -1,11 +1,10 @@
 # LearnEase_BE
 
 # Requirements
-![requirement](https://github.com/SangBeom-Hahn/Today_Feeling/blob/main/assests/struct.png)
+![requirement](https://github.com/InQ-InQ-InQ-InQ-InQ/LearnEase_BE/blob/SangBeom/img/rq.JPG)
 
-# DataBase Schema
-* 디벨롭 진행 중
-![requirement](https://github.com/SangBeom-Hahn/Today_Feeling/blob/main/assests/struct.png)
+# DataBase Schema (* 디벨롭 진행 중)
+![requirement](https://github.com/InQ-InQ-InQ-InQ-InQ/LearnEase_BE/blob/SangBeom/img/db_schema.png)
 
 # Feature
 ## 플래너
