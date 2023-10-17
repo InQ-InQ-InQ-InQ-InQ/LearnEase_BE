@@ -49,4 +49,15 @@ public class TaskService {
 
         return ResponseStatusCode.SUCCESS.value;
     }
+
+    public long delete(TaskDeleteRequestDto deleteRequestDto) {
+        Optional<Task> target = repository.findById(deleteRequestDto.getTaskId());
+
+        if (target.isEmpty()) {
+            throw new IllegalArgumentException("there is no task correct id for delete");
+        }
+
+        repository.delete(target.get());
+        return ResponseStatusCode.SUCCESS.value;
+    }
 }
