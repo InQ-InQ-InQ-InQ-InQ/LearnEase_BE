@@ -1,13 +1,12 @@
 package com.inq.learnease.service;
 
-import com.inq.learnease.dto.TaskCreateRequestDto;
-import com.inq.learnease.dto.TaskReadByCategoryRequestDto;
-import com.inq.learnease.dto.TaskReadByDateRequestDto;
-import com.inq.learnease.dto.TaskReadResponseDto;
+import com.inq.learnease.dto.*;
 import com.inq.learnease.entity.Task;
 import com.inq.learnease.repository.Repository;
 import com.inq.learnease.vo.ResponseStatusCode;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class TaskService {
@@ -36,5 +35,18 @@ public class TaskService {
         String date = readByDateRequestDto.getDate();
 
         return new TaskReadResponseDto(repository.findAllByDate(date));
+    }
+
+    public long update(TaskUpdateRequestDto updateRequestDto) {
+        Optional<Task> before = repository.findById(updateRequestDto.getTaskId());
+
+        if (before.isEmpty()) {
+            throw new IllegalArgumentException("there is no task correct id for update");
+        }
+        repository.delete(before.get());
+        Task after = updateRequestDto.getTask();
+        repository.save(after);
+
+        return ResponseStatusCode.SUCCESS.value;
     }
 }

@@ -1,9 +1,6 @@
 package com.inq.learnease.controller;
 
-import com.inq.learnease.dto.TaskCreateRequestDto;
-import com.inq.learnease.dto.TaskReadByCategoryRequestDto;
-import com.inq.learnease.dto.TaskReadByDateRequestDto;
-import com.inq.learnease.dto.TaskReadResponseDto;
+import com.inq.learnease.dto.*;
 import com.inq.learnease.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,15 +24,20 @@ public class TaskController {
         return taskService.readAll();
     }
 
-    @GetMapping("/{category}")
+    @GetMapping("/category/{category}")
     public TaskReadResponseDto readByCategoryTask(@PathVariable String category) {
         TaskReadByCategoryRequestDto readByCategoryRequestDto = new TaskReadByCategoryRequestDto(category);
         return taskService.readByCategory(readByCategoryRequestDto);
     }
 
-    @GetMapping("/{date}")
+    @GetMapping("/date/{date}")
     public TaskReadResponseDto readByDateTask(@PathVariable String date) {
         TaskReadByDateRequestDto readByDateRequestDto = new TaskReadByDateRequestDto(date);
         return taskService.readByDate(readByDateRequestDto);
+    }
+
+    @PutMapping("/task")
+    public long updateTask(@RequestBody TaskUpdateRequestDto updateRequestDto) {
+        return taskService.update(updateRequestDto);
     }
 }
