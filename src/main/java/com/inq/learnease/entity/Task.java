@@ -7,7 +7,6 @@ import jakarta.persistence.Id;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
-import org.springframework.context.annotation.Primary;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
