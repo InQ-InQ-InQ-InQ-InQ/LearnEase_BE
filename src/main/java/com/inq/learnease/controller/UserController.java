@@ -1,5 +1,7 @@
 package com.inq.learnease.controller;
 
+import com.inq.learnease.controller.auth.AuthenticationPrincipal;
+import com.inq.learnease.dto.LoginRequest;
 import com.inq.learnease.dto.UserRequest;
 import com.inq.learnease.dto.UserSignUpResponseDto;
 import com.inq.learnease.dto.UserUpdateRequest;
@@ -27,20 +29,20 @@ public class UserController {
                 .body(userSignUpResponseDto);
     }
     
-    @PutMapping("/user/{id}")
+    @PutMapping("/user")
     public ResponseEntity<Void> updateUser(
-            @PathVariable final Long id,
+            @AuthenticationPrincipal final LoginRequest loginRequest,
             @RequestBody @Valid final UserUpdateRequest userUpdateRequest
     ) {
-        userService.updateUser(userUpdateRequest.getNickname(), id);
+        userService.updateUser(userUpdateRequest.getNickname(), loginRequest.getId());
         return ResponseEntity.noContent().build();
     }
     
-    @DeleteMapping("/user/{id}")
+    @DeleteMapping("/user")
     public ResponseEntity<Void> deleteUser(
-            @PathVariable final Long id
+            @AuthenticationPrincipal final LoginRequest loginRequest
     ) {
-        userService.deleteUser(id);
+        userService.deleteUser(loginRequest.getId());
         return ResponseEntity.noContent().build();
     }
 }
