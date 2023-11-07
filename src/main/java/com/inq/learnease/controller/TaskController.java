@@ -15,34 +15,34 @@ public class TaskController {
     }
 
     @PostMapping("/task")
-    public long createTask(@RequestBody TaskCreateRequestDto createRequestDto) {
-        return taskService.create(createRequestDto);
+    public long createTask(@AuthenticationPrincipal final LoginRequest loginRequest, @RequestBody TaskCreateRequestDto createRequestDto) {
+        return taskService.create(loginRequest.getId(), createRequestDto);
     }
 
     @GetMapping("/all")
-    public TaskReadResponseDto readAllTask() {
-        return taskService.readAll();
+    public TaskReadResponseDto readAllTask(@AuthenticationPrincipal final LoginRequest loginRequest) {
+        return taskService.readAll(loginRequest.getId());
     }
 
     @GetMapping("/category/{category}")
-    public TaskReadResponseDto readByCategoryTask(@PathVariable String category) {
+    public TaskReadResponseDto readByCategoryTask(@AuthenticationPrincipal final LoginRequest loginRequest, @PathVariable String category) {
         TaskReadByCategoryRequestDto readByCategoryRequestDto = new TaskReadByCategoryRequestDto(category);
-        return taskService.readByCategory(readByCategoryRequestDto);
+        return taskService.readByCategory(loginRequest.getId(), readByCategoryRequestDto);
     }
 
     @GetMapping("/date/{date}")
-    public TaskReadResponseDto readByDateTask(@PathVariable String date) {
+    public TaskReadResponseDto readByDateTask(@AuthenticationPrincipal final LoginRequest loginRequest, @PathVariable String date) {
         TaskReadByDateRequestDto readByDateRequestDto = new TaskReadByDateRequestDto(date);
-        return taskService.readByDate(readByDateRequestDto);
+        return taskService.readByDate(loginRequest.getId(), readByDateRequestDto);
     }
 
     @PutMapping("/task")
-    public long updateTask(@RequestBody TaskUpdateRequestDto updateRequestDto) {
-        return taskService.update(updateRequestDto);
+    public long updateTask(@AuthenticationPrincipal final LoginRequest loginRequest, @RequestBody TaskUpdateRequestDto updateRequestDto) {
+        return taskService.update(loginRequest.getId(), updateRequestDto);
     }
 
     @DeleteMapping("/task")
-    public long deleteTask(@RequestBody TaskDeleteRequestDto deleteRequestDto) {
-        return taskService.delete(deleteRequestDto);
+    public long deleteTask(@AuthenticationPrincipal final LoginRequest loginRequest, @RequestBody TaskDeleteRequestDto deleteRequestDto) {
+        return taskService.delete(loginRequest.getId(), deleteRequestDto);
     }
 }

@@ -1,26 +1,32 @@
 package com.inq.learnease.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
+@Getter
+@Table(name = "tasks")
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    private long userId;
+
+    @Column(name = "task_name", length = 255, nullable = false)
     private String name;
+
     private String date;
     private String time;
     private String category;
 
     @Builder
-    public Task(String name, String date, String time, String category) {
+    public Task(long userId, String name, String date, String time, String category) {
+        this.userId = userId;
         this.name = name;
         this.date = date;
         this.time = time;

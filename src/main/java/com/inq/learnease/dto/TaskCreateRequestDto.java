@@ -19,8 +19,9 @@ public class TaskCreateRequestDto {
         this.category = category;
     }
 
-    public Task toEntity() {
+    public Task toEntity(long userId) {
         return Task.builder()
+                .userId(userId)
                 .name(name)
                 .date(date)
                 .time(time)
