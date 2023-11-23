@@ -45,7 +45,7 @@ public class ControllerAdvice {
     }
     
     @ExceptionHandler({IllegalArgumentException.class})
-    public ResponseEntity<ErrorResponse> handleCspopException(
+    public ResponseEntity<ErrorResponse> handleLearnEaseException(
             final IllegalArgumentException e,
             final HttpServletRequest request
     ) throws IOException {

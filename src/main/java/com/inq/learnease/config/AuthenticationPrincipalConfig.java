@@ -22,9 +22,10 @@ public class AuthenticationPrincipalConfig implements WebMvcConfigurer {
         registry.addInterceptor(new LoginInterceptor(jwtTokenProvider))
                 .order(1)
                 .addPathPatterns("/api/**")
-                .excludePathPatterns("/api/login/auth")
+                .excludePathPatterns("/api/login")
                 .excludePathPatterns("/api/logout")
-                .excludePathPatterns("/api/user");
+                .excludePathPatterns("/api/user")
+                .excludePathPatterns("/api/signup/**");
     }
     
     @Override
