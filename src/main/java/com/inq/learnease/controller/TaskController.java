@@ -19,18 +19,18 @@ public class TaskController {
         return taskService.create(loginRequest.getId(), createRequestDto);
     }
 
-    @GetMapping("/all")
+    @GetMapping("/task/all")
     public TaskReadResponseDto readAllTask(@AuthenticationPrincipal final LoginRequest loginRequest) {
         return taskService.readAll(loginRequest.getId());
     }
 
-    @GetMapping("/category/{category}")
+    @GetMapping("/task/category/{category}")
     public TaskReadResponseDto readByCategoryTask(@AuthenticationPrincipal final LoginRequest loginRequest, @PathVariable String category) {
         TaskReadByCategoryRequestDto readByCategoryRequestDto = new TaskReadByCategoryRequestDto(category);
         return taskService.readByCategory(loginRequest.getId(), readByCategoryRequestDto);
     }
 
-    @GetMapping("/date/{date}")
+    @GetMapping("/task/date/{date}")
     public TaskReadResponseDto readByDateTask(@AuthenticationPrincipal final LoginRequest loginRequest, @PathVariable String date) {
         TaskReadByDateRequestDto readByDateRequestDto = new TaskReadByDateRequestDto(date);
         return taskService.readByDate(loginRequest.getId(), readByDateRequestDto);

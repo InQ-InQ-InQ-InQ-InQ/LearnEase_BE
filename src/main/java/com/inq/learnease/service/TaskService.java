@@ -15,6 +15,7 @@ public class TaskService {
     public TaskService(TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
     }
+
     public long create(long userId, TaskCreateRequestDto createRequestDto) {
         Task task = createRequestDto.toEntity(userId);
         taskRepository.save(task);
@@ -26,19 +27,19 @@ public class TaskService {
     }
 
     public TaskReadResponseDto readByCategory(long userId, TaskReadByCategoryRequestDto readByCategoryRequestDto) {
-        String category = readByCategoryRequestDto.getCategory();
+        String category = readByCategoryRequestDto.category();
 
         return new TaskReadResponseDto(taskRepository.findAllByUserIdAndCategory(userId, category));
     }
 
     public TaskReadResponseDto readByDate(long userId, TaskReadByDateRequestDto readByDateRequestDto) {
-        String date = readByDateRequestDto.getDate();
+        String date = readByDateRequestDto.date();
 
         return new TaskReadResponseDto(taskRepository.findAllByUserIdAndDate(userId, date));
     }
 
     public long update(long userId, TaskUpdateRequestDto updateRequestDto) {
-        Optional<Task> before = taskRepository.findById(updateRequestDto.getTaskId());
+        Optional<Task> before = taskRepository.findById(updateRequestDto.taskId());
 
         if (before.isEmpty()) {
             throw new IllegalArgumentException("there is no task correct id for update");
@@ -51,14 +52,20 @@ public class TaskService {
         }
 
         taskRepository.delete(target);
-        Task after = updateRequestDto.getTask();
+        Task after = Task.builder()
+                .name(updateRequestDto.name())
+                .time(updateRequestDto.time())
+                .category(updateRequestDto.category())
+                .date(updateRequestDto.date())
+                .userId(userId)
+                .build();
         taskRepository.save(after);
 
         return ResponseStatusCode.SUCCESS.value;
     }
 
     public long delete(long userId, TaskDeleteRequestDto deleteRequestDto) {
-        Optional<Task> target = taskRepository.findById(deleteRequestDto.getTaskId());
+        Optional<Task> target = taskRepository.findById(deleteRequestDto.taskId());
 
         if (target.isEmpty()) {
             throw new IllegalArgumentException("there is no task correct id for delete");
