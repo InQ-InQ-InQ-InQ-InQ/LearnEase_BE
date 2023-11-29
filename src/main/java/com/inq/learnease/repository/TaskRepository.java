@@ -1,6 +1,6 @@
 package com.inq.learnease.repository;
 
-import com.inq.learnease.entity.Task;
+import com.inq.learnease.entity.task.Task;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

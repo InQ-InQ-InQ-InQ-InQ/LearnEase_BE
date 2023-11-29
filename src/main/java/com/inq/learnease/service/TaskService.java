@@ -1,20 +1,18 @@
 package com.inq.learnease.service;
 
 import com.inq.learnease.dto.*;
-import com.inq.learnease.entity.Task;
+import com.inq.learnease.entity.task.Task;
 import com.inq.learnease.repository.TaskRepository;
 import com.inq.learnease.vo.ResponseStatusCode;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class TaskService {
     private final TaskRepository taskRepository;
-
-    public TaskService(TaskRepository taskRepository) {
-        this.taskRepository = taskRepository;
-    }
 
     public long create(long userId, TaskCreateRequestDto createRequestDto) {
         Task task = createRequestDto.toEntity(userId);

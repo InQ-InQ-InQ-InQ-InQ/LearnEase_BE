@@ -1,6 +1,6 @@
 package com.inq.learnease.dto;
 
-import com.inq.learnease.entity.Task;
+import com.inq.learnease.entity.task.Task;
 import lombok.Builder;
 
 public record TaskCreateRequestDto(String name, String date, String time, String category) {

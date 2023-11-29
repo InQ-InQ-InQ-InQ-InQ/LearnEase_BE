@@ -1,5 +1,6 @@
 package com.inq.learnease.controller;
 
+import com.inq.learnease.controller.auth.AuthenticationPrincipal;
 import com.inq.learnease.dto.*;
 import com.inq.learnease.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
