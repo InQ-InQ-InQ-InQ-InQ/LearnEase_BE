@@ -30,7 +30,7 @@ public class Email {
         Matcher matcher = PASSWORD_PATTERN.matcher(value);
         
         if (!matcher.matches()) {
-            throw new IllegalArgumentException(value);
+            throw new IllegalArgumentException("OH NO HSB");
         }
     }
 }
