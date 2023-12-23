@@ -25,7 +25,7 @@ public class UserController {
     public ResponseEntity<UserSignUpResponseDto> join(@RequestBody @Valid final UserRequest userRequest) {
         UserSignUpResponseDto userSignUpResponseDto = userService.save(userRequest.toServiceDto());
         return ResponseEntity
-                .created(URI.create("/api/students/" + userSignUpResponseDto.getId()))
+                .created(URI.create("/api/user/" + userSignUpResponseDto.getId()))
                 .body(userSignUpResponseDto);
     }
     

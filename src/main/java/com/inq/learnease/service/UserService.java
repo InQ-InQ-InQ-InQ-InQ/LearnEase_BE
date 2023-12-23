@@ -34,7 +34,7 @@ public class UserService {
     }
     
     public void validateLoginIdHasDuplicate(final Email loginId) {
-        if (userRepository.existsByLoginId(loginId.getValue())) {
+        if (userRepository.existsByLoginId(loginId)) {
             throw new IllegalArgumentException();
         }
     }

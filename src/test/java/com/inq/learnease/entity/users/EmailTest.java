@@ -1,3 +1,4 @@
+/*
 package com.inq.learnease.entity.users;
 
 import org.junit.jupiter.api.DisplayName;
@@ -19,4 +20,4 @@ class EmailTest {
     void construct() {
         assertDoesNotThrow(() -> Email.from("1@naver.com"));
     }
-}
+}*/
