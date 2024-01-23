@@ -1,6 +1,6 @@
 package com.inq.learnease.service;
 
-import com.inq.learnease.dto.*;
+import com.inq.learnease.dto.task.*;
 import com.inq.learnease.entity.task.Task;
 import com.inq.learnease.repository.TaskRepository;
 import com.inq.learnease.vo.ResponseStatusCode;

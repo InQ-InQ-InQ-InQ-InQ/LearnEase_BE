@@ -1,7 +1,7 @@
 /*
 package com.inq.learnease.entity.users.task;
 
-import com.inq.learnease.dto.TaskCreateRequestDto;
+import com.inq.learnease.dto.task.TaskCreateRequestDto;
 import com.inq.learnease.repository.TaskRepository;
 import com.inq.learnease.service.TaskService;
 import org.junit.jupiter.api.BeforeEach;

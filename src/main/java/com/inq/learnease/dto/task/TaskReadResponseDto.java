@@ -1,4 +1,4 @@
-package com.inq.learnease.dto;
+package com.inq.learnease.dto.task;
 
 import com.inq.learnease.entity.task.Task;
 

@@ -1,12 +1,11 @@
 package com.inq.learnease.service;
 
 import com.inq.learnease.dto.AutoScheduleRequestDto;
-import com.inq.learnease.dto.TaskCreateRequestDto;
+import com.inq.learnease.dto.task.TaskCreateRequestDto;
 import org.springframework.stereotype.Service;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 

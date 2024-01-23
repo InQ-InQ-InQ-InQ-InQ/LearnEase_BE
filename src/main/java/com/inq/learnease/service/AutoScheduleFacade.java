@@ -1,7 +1,7 @@
 package com.inq.learnease.service;
 
 import com.inq.learnease.dto.AutoScheduleRequestDto;
-import com.inq.learnease.dto.TaskCreateRequestDto;
+import com.inq.learnease.dto.task.TaskCreateRequestDto;
 import com.inq.learnease.entity.task.Task;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
