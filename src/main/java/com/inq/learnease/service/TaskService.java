@@ -7,6 +7,8 @@ import com.inq.learnease.vo.ResponseStatusCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -18,6 +20,16 @@ public class TaskService {
         Task task = createRequestDto.toEntity(userId);
         taskRepository.save(task);
         return ResponseStatusCode.SUCCESS.value;
+    }
+
+    public List<Task> create(long userId, List<TaskCreateRequestDto> list) {
+        List<Task> tasks = new ArrayList<>();
+        for (TaskCreateRequestDto taskCreateRequestDto : list) {
+            Task task = taskCreateRequestDto.toEntity(userId);
+            tasks.add(task);
+            taskRepository.save(task);
+        }
+        return tasks;
     }
 
     public TaskReadResponseDto readAll(long userId) {
