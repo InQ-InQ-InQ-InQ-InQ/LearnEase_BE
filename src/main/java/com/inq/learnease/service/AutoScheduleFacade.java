@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public abstract class AutoScheduleFacade {
+public class AutoScheduleFacade {
     private final AutoScheduleService autoService;
     private final TaskService taskService;
 

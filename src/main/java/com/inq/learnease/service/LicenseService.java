@@ -2,7 +2,6 @@ package com.inq.learnease.service;
 
 import com.inq.learnease.dto.license.LicenseDto;
 import com.inq.learnease.entity.License;
-import com.inq.learnease.repository.CertificationRepository;
 import com.inq.learnease.repository.LicenseRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,7 +17,7 @@ public class LicenseService {
     public LicenseDto create(LicenseDto dto) {
         License license = new License(dto.name());
 
-        if (repository.findByLicenseName(dto.name()).isEmpty()) {
+        if (repository.findByName(dto.name()).isEmpty()) {
             repository.save(license);
             return dto;
         }
