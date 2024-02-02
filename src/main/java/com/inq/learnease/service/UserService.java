@@ -10,6 +10,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.NoSuchElementException;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -44,5 +46,11 @@ public class UserService {
                 .orElseThrow(() -> new IllegalArgumentException());
         
         userRepository.deleteById(userId);
+    }
+
+    public boolean authenticateUser(String username, String password) {
+        User user = userRepository.findByLoginId(Email.from(username))
+                .orElseThrow(NoSuchElementException::new);
+        return user.getPassword().equals(password);
     }
 }

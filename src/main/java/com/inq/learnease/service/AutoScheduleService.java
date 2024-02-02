@@ -13,8 +13,8 @@ import java.util.List;
 public class AutoScheduleService {
     public List<TaskCreateRequestDto> makeAutoSchedule(AutoScheduleRequestDto autoScheduleRequestDto) {
         List<TaskCreateRequestDto> response = new ArrayList<>();
-        LocalDate start = LocalDate.parse(autoScheduleRequestDto.startDate());
-        LocalDate end = LocalDate.parse(autoScheduleRequestDto.endDate());
+        LocalDate start = autoScheduleRequestDto.startDate();
+        LocalDate end = autoScheduleRequestDto.endDate();
 
         List<DayOfWeek> dayOfWeeks = new ArrayList<>();
         for (int i = 0; i < autoScheduleRequestDto.days().length; i++) {
