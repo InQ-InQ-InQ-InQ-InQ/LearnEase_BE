@@ -19,7 +19,7 @@ public class AutoScheduleController {
     private final AutoScheduleFacade scheduleFacade;
 
     @PostMapping("/autoSchedule")
-    public ResponseEntity<List<Task>> makeAutoSchedule(LoginRequest loginRequest, AutoScheduleRequestDto autoScheduleRequestDto) {
-        return ResponseEntity.ok(scheduleFacade.makeSchedule(loginRequest.getId(), autoScheduleRequestDto));
+    public ResponseEntity<List<Task>> makeAutoSchedule(AutoScheduleRequestDto autoScheduleRequestDto) {
+        return ResponseEntity.ok(scheduleFacade.makeSchedule(autoScheduleRequestDto.userId(), autoScheduleRequestDto));
     }
 }

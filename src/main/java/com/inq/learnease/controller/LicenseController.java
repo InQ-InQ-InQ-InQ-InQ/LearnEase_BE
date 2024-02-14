@@ -23,7 +23,7 @@ public class LicenseController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("licenses")
+    @GetMapping("/licenses")
     public ResponseEntity<List<LicenseDto>> readAll() {
         List<LicenseDto> response = service.readAll();
         return ResponseEntity.ok(response);

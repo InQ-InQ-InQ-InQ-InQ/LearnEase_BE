@@ -20,8 +20,8 @@ public class TaskController {
         return taskService.create(createRequestDto.userId(), createRequestDto);
     }
 
-    @GetMapping("/task/all")
-    public TaskReadResponseDto readAllTask(long userId) {
+    @GetMapping("/task/all/{userId}")
+    public TaskReadResponseDto readAllTask(@PathVariable long userId) {
         return taskService.readAll(userId);
     }
 
