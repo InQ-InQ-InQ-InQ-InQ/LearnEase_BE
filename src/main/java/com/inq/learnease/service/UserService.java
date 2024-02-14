@@ -6,7 +6,6 @@ import com.inq.learnease.entity.users.Email;
 import com.inq.learnease.entity.users.User;
 import com.inq.learnease.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,11 +16,10 @@ import java.util.NoSuchElementException;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
     
     public UserSignUpResponseDto save(final UserRequestDto userRequestDto) {
         validateLoginIdHasDuplicate(userRequestDto.getLoginId());
-        String password = passwordEncoder.encode(userRequestDto.getPassword());
+        String password = userRequestDto.getPassword();
     
         User user = new User(userRequestDto.getLoginId(), password, userRequestDto.getNickname());
         User saveUser = userRepository.save(user);
@@ -52,5 +50,11 @@ public class UserService {
         User user = userRepository.findByLoginId(Email.from(username))
                 .orElseThrow(NoSuchElementException::new);
         return user.getPassword().equals(password);
+    }
+
+    public long getUserId(String username) {
+        User user = userRepository.findByLoginId(Email.from(username))
+                .orElseThrow(NoSuchElementException::new);
+        return user.getId();
     }
 }

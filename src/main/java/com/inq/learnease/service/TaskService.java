@@ -19,7 +19,7 @@ public class TaskService {
     public long create(long userId, TaskCreateRequestDto createRequestDto) {
         Task task = createRequestDto.toEntity(userId);
         taskRepository.save(task);
-        return ResponseStatusCode.SUCCESS.value;
+        return task.getId();
     }
 
     public List<Task> create(long userId, List<TaskCreateRequestDto> list) {

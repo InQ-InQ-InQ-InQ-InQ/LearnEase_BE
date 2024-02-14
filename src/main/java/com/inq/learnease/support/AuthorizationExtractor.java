@@ -1,3 +1,4 @@
+/*
 package com.inq.learnease.support;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -38,3 +39,4 @@ public class AuthorizationExtractor {
         return authHeaderValue;
     }
 }
+*/

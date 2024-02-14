@@ -26,6 +26,7 @@ public class AutoScheduleService {
 
             if (dayOfWeeks.contains(dayOfWeek)) {
                 TaskCreateRequestDto dto = new TaskCreateRequestDto(
+                        autoScheduleRequestDto.userId(),
                         autoScheduleRequestDto.license(),
                         start.toString(),
                         null,

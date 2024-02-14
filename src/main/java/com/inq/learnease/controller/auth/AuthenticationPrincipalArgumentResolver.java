@@ -1,3 +1,4 @@
+/*
 package com.inq.learnease.controller.auth;
 
 import com.inq.learnease.dto.LoginRequest;
@@ -33,3 +34,4 @@ public class AuthenticationPrincipalArgumentResolver implements HandlerMethodArg
         return new LoginRequest(Long.valueOf(id));
     }
 }
+*/

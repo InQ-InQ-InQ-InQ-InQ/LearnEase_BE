@@ -3,7 +3,7 @@ package com.inq.learnease.dto.task;
 import com.inq.learnease.entity.task.Task;
 import lombok.Builder;
 
-public record TaskCreateRequestDto(String name, String date, String time, String category) {
+public record TaskCreateRequestDto(long userId, String name, String date, String time, String category) {
     @Builder
     public Task toEntity(long userId) {
         return Task.builder()

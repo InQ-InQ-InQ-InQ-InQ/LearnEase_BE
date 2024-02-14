@@ -1,4 +1,4 @@
 package com.inq.learnease.dto.task;
 
-public record TaskDeleteRequestDto(long taskId) {
+public record TaskDeleteRequestDto(long userId, long taskId) {
 }

@@ -1,3 +1,4 @@
+/*
 package com.inq.learnease.controller.auth;
 
 import com.inq.learnease.support.AuthorizationExtractor;
@@ -25,3 +26,4 @@ public class LoginInterceptor implements HandlerInterceptor {
         return true;
     }
 }
+*/

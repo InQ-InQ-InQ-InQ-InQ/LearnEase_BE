@@ -1,4 +1,4 @@
 package com.inq.learnease.dto.task;
 
-public record TaskReadByDateRequestDto(String date) {
+public record TaskReadByDateRequestDto(long userId, String date) {
 }

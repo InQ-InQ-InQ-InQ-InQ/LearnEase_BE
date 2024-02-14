@@ -1,13 +1,12 @@
 package com.inq.learnease.controller;
 
-import com.inq.learnease.controller.auth.AuthenticationPrincipal;
-import com.inq.learnease.dto.*;
 import com.inq.learnease.dto.task.*;
 import com.inq.learnease.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/api")
 public class TaskController {
     private final TaskService taskService;
 
@@ -17,34 +16,34 @@ public class TaskController {
     }
 
     @PostMapping("/task")
-    public long createTask(@AuthenticationPrincipal final LoginRequest loginRequest, @RequestBody TaskCreateRequestDto createRequestDto) {
-        return taskService.create(loginRequest.getId(), createRequestDto);
+    public long createTask(@RequestBody TaskCreateRequestDto createRequestDto) {
+        return taskService.create(createRequestDto.userId(), createRequestDto);
     }
 
     @GetMapping("/task/all")
-    public TaskReadResponseDto readAllTask(@AuthenticationPrincipal final LoginRequest loginRequest) {
-        return taskService.readAll(loginRequest.getId());
+    public TaskReadResponseDto readAllTask(long userId) {
+        return taskService.readAll(userId);
     }
 
-    @GetMapping("/task/category/{category}")
-    public TaskReadResponseDto readByCategoryTask(@AuthenticationPrincipal final LoginRequest loginRequest, @PathVariable String category) {
-        TaskReadByCategoryRequestDto readByCategoryRequestDto = new TaskReadByCategoryRequestDto(category);
-        return taskService.readByCategory(loginRequest.getId(), readByCategoryRequestDto);
+    @GetMapping("/task/category/{userId}/{category}")
+    public TaskReadResponseDto readByCategoryTask(@PathVariable long userId, @PathVariable String category) {
+        TaskReadByCategoryRequestDto readByCategoryRequestDto = new TaskReadByCategoryRequestDto(userId, category);
+        return taskService.readByCategory(readByCategoryRequestDto.userId(), readByCategoryRequestDto);
     }
 
-    @GetMapping("/task/date/{date}")
-    public TaskReadResponseDto readByDateTask(@AuthenticationPrincipal final LoginRequest loginRequest, @PathVariable String date) {
-        TaskReadByDateRequestDto readByDateRequestDto = new TaskReadByDateRequestDto(date);
-        return taskService.readByDate(loginRequest.getId(), readByDateRequestDto);
+    @GetMapping("/task/date/{userId}/{date}")
+    public TaskReadResponseDto readByDateTask(@PathVariable long userId, @PathVariable String date) {
+        TaskReadByDateRequestDto readByDateRequestDto = new TaskReadByDateRequestDto(userId, date);
+        return taskService.readByDate(readByDateRequestDto.userId(), readByDateRequestDto);
     }
 
     @PutMapping("/task")
-    public long updateTask(@AuthenticationPrincipal final LoginRequest loginRequest, @RequestBody TaskUpdateRequestDto updateRequestDto) {
-        return taskService.update(loginRequest.getId(), updateRequestDto);
+    public long updateTask(@RequestBody TaskUpdateRequestDto updateRequestDto) {
+        return taskService.update(updateRequestDto.userId(), updateRequestDto);
     }
 
     @DeleteMapping("/task")
-    public long deleteTask(@AuthenticationPrincipal final LoginRequest loginRequest, @RequestBody TaskDeleteRequestDto deleteRequestDto) {
-        return taskService.delete(loginRequest.getId(), deleteRequestDto);
+    public long deleteTask(@RequestBody TaskDeleteRequestDto deleteRequestDto) {
+        return taskService.delete(deleteRequestDto.userId(), deleteRequestDto);
     }
 }
