@@ -1,10 +1,13 @@
 package com.inq.learnease.entity.users;
 
 import com.inq.learnease.entity.BaseEntity;
+import com.inq.learnease.entity.Goal;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -24,6 +27,9 @@ public class User extends BaseEntity {
     
     @Column(name = "nickname", length = 255, nullable = false)
     private String nickname;
+
+    @OneToMany(mappedBy = "user")
+    private List<Goal> goals;
     
     public User(Email loginId, String password, String nickname) {
         this.loginId = loginId;

@@ -1,3 +1,4 @@
+/*
 package com.inq.learnease.config;
 
 import com.inq.learnease.controller.auth.AuthenticationPrincipalArgumentResolver;
@@ -33,3 +34,4 @@ public class AuthenticationPrincipalConfig implements WebMvcConfigurer {
         argumentResolvers.add(new AuthenticationPrincipalArgumentResolver(jwtTokenProvider));
     }
 }
+*/

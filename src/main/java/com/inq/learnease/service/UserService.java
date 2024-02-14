@@ -6,20 +6,20 @@ import com.inq.learnease.entity.users.Email;
 import com.inq.learnease.entity.users.User;
 import com.inq.learnease.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.NoSuchElementException;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
     
     public UserSignUpResponseDto save(final UserRequestDto userRequestDto) {
         validateLoginIdHasDuplicate(userRequestDto.getLoginId());
-        String password = passwordEncoder.encode(userRequestDto.getPassword());
+        String password = userRequestDto.getPassword();
     
         User user = new User(userRequestDto.getLoginId(), password, userRequestDto.getNickname());
         User saveUser = userRepository.save(user);
@@ -34,7 +34,7 @@ public class UserService {
     }
     
     public void validateLoginIdHasDuplicate(final Email loginId) {
-        if (userRepository.existsByLoginId(loginId.getValue())) {
+        if (userRepository.existsByLoginId(loginId)) {
             throw new IllegalArgumentException();
         }
     }
@@ -44,5 +44,17 @@ public class UserService {
                 .orElseThrow(() -> new IllegalArgumentException());
         
         userRepository.deleteById(userId);
+    }
+
+    public boolean authenticateUser(String username, String password) {
+        User user = userRepository.findByLoginId(Email.from(username))
+                .orElseThrow(NoSuchElementException::new);
+        return user.getPassword().equals(password);
+    }
+
+    public long getUserId(String username) {
+        User user = userRepository.findByLoginId(Email.from(username))
+                .orElseThrow(NoSuchElementException::new);
+        return user.getId();
     }
 }
