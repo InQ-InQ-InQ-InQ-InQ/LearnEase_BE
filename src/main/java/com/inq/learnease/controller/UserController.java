@@ -42,14 +42,14 @@ public class UserController {
     }
 
     @PutMapping("/api/user")
-    public ResponseEntity<Void> updateUser(LoginRequest loginRequest, @RequestBody @Valid final UserUpdateRequest userUpdateRequest) {
-        userService.updateUser(userUpdateRequest.getNickname(), loginRequest.getId());
+    public ResponseEntity<Void> updateUser(@RequestBody @Valid final UserUpdateRequest userUpdateRequest) {
+        userService.updateUser(userUpdateRequest.getNickname(), userUpdateRequest.getUserId());
         return ResponseEntity.noContent().build();
     }
     
-    @DeleteMapping("/api/user")
-    public ResponseEntity<Void> deleteUser(LoginRequest loginRequest) {
-        userService.deleteUser(loginRequest.getId());
+    @DeleteMapping("/api/user/{userId}")
+    public ResponseEntity<Void> deleteUser(@PathVariable long userId) {
+        userService.deleteUser(userId);
         return ResponseEntity.noContent().build();
     }
 }

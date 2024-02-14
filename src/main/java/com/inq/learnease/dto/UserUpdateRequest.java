@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class UserUpdateRequest {
+    private long userId;
     @NotBlank(message = "비어있는 항목을 입력해주세요.")
     private String nickname;
 }
