@@ -16,7 +16,7 @@ import java.util.Map;
 @Slf4j
 public class UserController {
     private final UserService userService;
-    
+
     public UserController(UserService userService) {
         this.userService = userService;
     }
@@ -26,7 +26,7 @@ public class UserController {
         boolean authenticationResult = userService.authenticateUser(loginRequest.getEmail(), loginRequest.getPassword());
 
         if (authenticationResult) {
-            Map<String, Long> map = new HashMap<>();
+            Map<String, Long> map   = new HashMap<>();
             map.put("USER", userService.getUserId(loginRequest.getEmail()));
             return ResponseEntity.ok().body(map);
         } else {
@@ -34,7 +34,7 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
-    
+
     @PostMapping("/join")
     public ResponseEntity<UserSignUpResponseDto> join(@RequestBody @Valid final UserRequest userRequest) {
         UserSignUpResponseDto userSignUpResponseDto = userService.save(userRequest.toServiceDto());
@@ -46,7 +46,7 @@ public class UserController {
         userService.updateUser(userUpdateRequest.getNickname(), userUpdateRequest.getUserId());
         return ResponseEntity.noContent().build();
     }
-    
+
     @DeleteMapping("/api/user/{userId}")
     public ResponseEntity<Void> deleteUser(@PathVariable long userId) {
         userService.deleteUser(userId);
