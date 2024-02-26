@@ -22,12 +22,11 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    @CrossOrigin(origins = "*")
     public ResponseEntity<Map<String, Long>> login(@RequestBody UserLoginDto loginRequest) {
         boolean authenticationResult = userService.authenticateUser(loginRequest.getEmail(), loginRequest.getPassword());
 
         if (authenticationResult) {
-            Map<String, Long> map = new HashMap<>();
+            Map<String, Long> map   = new HashMap<>();
             map.put("USER", userService.getUserId(loginRequest.getEmail()));
             return ResponseEntity.ok().body(map);
         } else {
