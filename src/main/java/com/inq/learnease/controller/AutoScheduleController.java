@@ -7,6 +7,7 @@ import com.inq.learnease.service.AutoScheduleFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +20,7 @@ public class AutoScheduleController {
     private final AutoScheduleFacade scheduleFacade;
 
     @PostMapping("/autoSchedule")
-    public ResponseEntity<List<Task>> makeAutoSchedule(AutoScheduleRequestDto autoScheduleRequestDto) {
+    public ResponseEntity<List<Task>> makeAutoSchedule(@RequestBody AutoScheduleRequestDto autoScheduleRequestDto) {
         return ResponseEntity.ok(scheduleFacade.makeSchedule(autoScheduleRequestDto.userId(), autoScheduleRequestDto));
     }
 }

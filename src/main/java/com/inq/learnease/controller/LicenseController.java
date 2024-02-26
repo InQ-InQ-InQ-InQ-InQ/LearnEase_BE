@@ -4,10 +4,7 @@ import com.inq.learnease.dto.license.LicenseDto;
 import com.inq.learnease.service.LicenseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,7 +15,7 @@ public class LicenseController {
     private final LicenseService service;
 
     @PostMapping("/license")
-    public ResponseEntity<LicenseDto> create(LicenseDto dto) {
+    public ResponseEntity<LicenseDto> create(@RequestBody LicenseDto dto) {
         LicenseDto response = service.create(dto);
         return ResponseEntity.ok(response);
     }
