@@ -17,8 +17,6 @@ public class License {
 
     @Builder
     public License(String name) {
-        License.builder()
-                .name(name)
-                .build();
+        this.name = name;
     }
 }

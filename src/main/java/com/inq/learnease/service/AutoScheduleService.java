@@ -34,8 +34,8 @@ public class AutoScheduleService {
                 );
 
                 response.add(dto);
-                start = start.plusDays(1);
             }
+            start = start.plusDays(1);
         }
         return response;
     }
