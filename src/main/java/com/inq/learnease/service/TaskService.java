@@ -61,15 +61,10 @@ public class TaskService {
             throw new IllegalArgumentException("only can update your own task");
         }
 
-        taskRepository.delete(target);
-        Task after = Task.builder()
-                .name(updateRequestDto.name())
-                .time(updateRequestDto.time())
-                .category(updateRequestDto.category())
-                .date(updateRequestDto.date())
-                .userId(userId)
-                .build();
-        taskRepository.save(after);
+        target.update(updateRequestDto.name(),
+                updateRequestDto.date(),
+                updateRequestDto.time(),
+                updateRequestDto.category());
 
         return ResponseStatusCode.SUCCESS.value;
     }

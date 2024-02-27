@@ -37,7 +37,7 @@ public class TaskController {
         return taskService.readByDate(readByDateRequestDto.userId(), readByDateRequestDto);
     }
 
-    @PutMapping("/task")
+    @PatchMapping("/task")
     public long updateTask(@RequestBody TaskUpdateRequestDto updateRequestDto) {
         return taskService.update(updateRequestDto.userId(), updateRequestDto);
     }

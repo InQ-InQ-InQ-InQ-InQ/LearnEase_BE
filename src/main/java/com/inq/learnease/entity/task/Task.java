@@ -32,4 +32,19 @@ public class Task {
         this.time = time;
         this.category = category;
     }
+
+    public void update(String name, String date, String time, String category) {
+        if (!name.isEmpty()) {
+            this.name = name;
+        }
+        if (!date.isEmpty()) {
+            this.date = date;
+        }
+        if (!time.isEmpty()) {
+            this.time = time;
+        }
+        if (!category.isEmpty()) {
+            this.category = category;
+        }
+    }
 }
